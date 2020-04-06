@@ -21,35 +21,43 @@ func main() {
 		},
 	}
 
-	fmt.Println("row: ", len(b.state[0]), " col: ", len(b.state))
+	b.show()
 	for {
-		reader := bufio.NewReader(os.Stdin)
-		fmt.Print("Enter column: ")
-		text, _ := reader.ReadString('\n')
-		text = strings.TrimSpace(text)
+		if b.moves%2 == 0 {
+			reader := bufio.NewReader(os.Stdin)
+			fmt.Print("Enter column: ")
+			text, _ := reader.ReadString('\n')
+			text = strings.TrimSpace(text)
 
-		if text == "q" {
-			break
-		}
-
-		i1, err := strconv.Atoi(text)
-		if err == nil && b.moves%2 == 0 {
-			_, err := b.add(1, i1)
-
-			gameOver := b.endGame(1)
-			if gameOver {
-				b.show()
-				fmt.Println("PLAYER 1 WINS!")
+			if text == "q" {
 				break
 			}
-			if !err {
-				b.moves++
-				b.show()
+
+			i1, err := strconv.Atoi(text)
+			if err == nil {
+				if i1 > 7 {
+					fmt.Println("No such column exists, choose a vlaue between 1 and 7")
+					continue
+				}
+				_, err := b.add(1, i1)
+
+				gameOver := b.endGame(1)
+				if gameOver {
+					b.show()
+					fmt.Println("PLAYER 1 WINS!")
+					break
+				}
+				if !err {
+					b.moves++
+					b.show()
+				}
+				continue
 			}
-			continue
 		}
-		if err == nil && b.moves%2 == 1 {
-			_, err := b.add(2, i1)
+
+		if b.moves%2 == 1 {
+			p := aiMove("R")
+			_, err := b.add(2, p)
 			gameOver := b.endGame(2)
 			if gameOver {
 				b.show()
@@ -61,6 +69,7 @@ func main() {
 				b.show()
 			}
 			continue
+
 		}
 
 	}
