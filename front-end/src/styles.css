@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+.app{
+    width:100vw;
+    height:100vh;
+    background-color: #a2b6be;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.current-turn-div{
+    margin-left:10vw;
+}
+.current-turn-div h1{
+    transition: 200ms;
+    font-family: Calibri;
+    margin-bottom: 1vw;
+}
+.current-turn{
+    transition: 200ms;
+    width:10vw;
+    height:10vw;
+    border-radius: 50%;
+    box-shadow: 1px 1px 10px 1px rgb(139, 139, 139);
+}
+.board{
+    padding: 1%;
+    margin-top: 5vh;
+    z-index: 0;
+    width:calc(0.7*70vw);
+    height: calc(0.7*60vw);
+    display: grid;
+    grid-template-columns: calc(0.7*10vw) calc(0.7*10vw) calc(0.7*10vw) calc(0.7*10vw) calc(0.7*10vw) calc(0.7*10vw) calc(0.7*10vw);
+    background-color: rgb(49, 49, 219);
+    box-shadow: 0px 1px 9px -1px #000000;
+    border-radius: 2%;
+}
+.emptyColumn{
+    white-space:nowrap;
+    display: grid;
+    grid-template-rows: calc(0.7*10vw) calc(0.7*10vw) calc(0.7*10vw) calc(0.7*10vw) calc(0.7*10vw) calc(0.7*10vw);
+}
+.emptySpaces{
+    z-index: 1;
+    margin-top:calc(0.025*10vw);
+    margin-left:calc(0.025*10vw);
+    width:calc(0.65*10vw);
+    height:calc(0.65*10vw);
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.623);
+    animation:drop 2s ease-out;
+}
+@keyframes drop{
+    from{
+        margin-top:-400px
+    }
+    to{
+        margin-top:0px
+    }
+}
